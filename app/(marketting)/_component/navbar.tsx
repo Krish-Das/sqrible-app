@@ -2,9 +2,9 @@ import Link from "next/link";
 
 const Navbar = () => {
   return (
-    <header className="p-3 border-b">
-      <Link href="/" className="flex items-center gap-1">
-        <span className="text-xl font-bold tracking-tight">Sqrible.</span>
+    <header className="border-b p-3">
+      <Link href="/" className="text-xl font-bold tracking-tight">
+        Sqrible.
       </Link>
     </header>
   );
