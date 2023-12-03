@@ -30,7 +30,7 @@ function HeroImage() {
         <div className="relative h-[300px] w-[300px] sm:h-[350px] sm:w-[350px] md:h-[400px] md:w-[400px]">
           <Image
             src="/hero_images/documents.png"
-            alt="something"
+            alt=""
             fill
             className="object-contain"
           />
@@ -41,7 +41,7 @@ function HeroImage() {
             src="/hero_images/reading.png"
             fill
             className="object-contain"
-            alt="Reading"
+            alt=""
           />
         </div>
       </div>
