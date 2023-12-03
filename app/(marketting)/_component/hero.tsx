@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRightIcon } from "@radix-ui/react-icons";
 import Image from "next/image";
+import Link from "next/link";
 
 const Hero = () => {
   return (
@@ -13,8 +14,10 @@ const Hero = () => {
         Sqrible is the connected workspace where <br /> better, faster work
         happens.
       </h3>
-      <Button className="mt-3 w-fit">
-        Enter Sqrible <ArrowRightIcon className="ml-2" />
+      <Button className="mt-3 w-fit" asChild>
+        <Link href="/document">
+          Enter Sqrible <ArrowRightIcon className="ml-2" />
+        </Link>
       </Button>
       <HeroImage />
     </div>

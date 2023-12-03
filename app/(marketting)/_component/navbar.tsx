@@ -19,10 +19,14 @@ const Navbar = () => {
         {!isAuthenticated && !isLoading && (
           <>
             <Button variant="ghost" size="sm" asChild>
-              <SignInButton mode="modal">Log In</SignInButton>
+              <SignInButton mode="modal" afterSignInUrl="/document">
+                Log In
+              </SignInButton>
             </Button>
             <Button variant="outline" size="sm" asChild>
-              <SignUpButton mode="modal">Sign up for free</SignUpButton>
+              <SignUpButton mode="modal" afterSignUpUrl="/document">
+                Sign up for free
+              </SignUpButton>
             </Button>
           </>
         )}
