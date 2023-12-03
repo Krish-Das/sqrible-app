@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const Hero = () => {
   return (
-    <div className="grid h-full w-full flex-col place-content-center place-items-center gap-1 text-center">
+    <div className="grid h-full w-full flex-col place-content-center place-items-center gap-1 pt-16 text-center">
       <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">
         Your Ideas, Documents & Plans. <br /> Unified. Welcome to{" "}
         <span className="underline underline-offset-2">Sqrible.</span>
