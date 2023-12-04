@@ -32,7 +32,7 @@ const Sidebar = () => {
     let newWidth = event.clientX;
 
     //TODO: Refactor these codes
-    if (newWidth < 240) newWidth = 240;
+    if (newWidth < 256) newWidth = 256;
     if (newWidth > 480) newWidth = 480;
 
     if (sidebarRef.current && navbarRef.current) {
@@ -49,6 +49,37 @@ const Sidebar = () => {
     isResizingRef.current = false;
     document.removeEventListener("mousemove", handleMousemove);
     document.removeEventListener("mouseup", handleMouseup);
+  }
+
+  function resetWidth() {
+    if (sidebarRef.current && navbarRef.current) {
+      setCollapsed(false);
+      setResetting(true);
+
+      sidebarRef.current.style.width = isMobile ? "100%" : "16rem";
+      navbarRef.current.style.setProperty(
+        "width",
+        isMobile ? "0" : "calc(100% - 16rem)",
+      );
+      navbarRef.current.style.setProperty("left", isMobile ? "100%" : "16rem");
+
+      // animate
+      setTimeout(() => setResetting(false), 300);
+    }
+  }
+
+  function collapseSidebar() {
+    if (sidebarRef.current && navbarRef.current) {
+      setCollapsed(true);
+      setResetting(true);
+
+      sidebarRef.current.style.width = "0";
+      navbarRef.current.style.setProperty("width", "100%");
+      navbarRef.current.style.setProperty("left", "0");
+
+      // animate
+      setTimeout(() => setResetting(false), 300);
+    }
   }
 
   return (
@@ -77,6 +108,7 @@ const Sidebar = () => {
             <Button
               size="icon"
               variant="ghost"
+              onClick={collapseSidebar}
               className={cn(null, isMobile && "opacity-100")}
             >
               <ChevronLeftIcon />
@@ -89,7 +121,6 @@ const Sidebar = () => {
         <div
           className="group/handle absolute right-0 top-0 flex h-full w-4  translate-x-1/2 cursor-col-resize justify-center"
           onMouseDown={handleMouseDown}
-          onClick={() => {}}
         >
           {/* ------- Actual handle */}
           <div className="h-full border-l border-primary/[0.1] transition group-hover/handle:border-l-2 group-hover/handle:border-primary/20" />
@@ -98,14 +129,15 @@ const Sidebar = () => {
       <div
         ref={navbarRef}
         className={cn(
-          "w-[calc(100% - 15rem)] absolute left-60 top-0 z-[999]",
+          "w-[calc(100% - 16rem)] absolute left-64 top-0 z-[999]", //TODO: Check the z-index
           isResetting && "transition-all duration-300 ease-in-out",
           isMobile && "left-0 w-full",
         )}
       >
+        {/* Show sidebar */}
         <nav className="p-3">
           {isCollapsed && (
-            <Button variant="ghost" size="icon">
+            <Button variant="ghost" size="icon" onClick={resetWidth}>
               <HamburgerMenuIcon />
             </Button>
           )}
