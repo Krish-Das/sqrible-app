@@ -9,7 +9,7 @@ const MainLayout = ({ children }: { children: ReactNode }) => {
 
   if (isLoading)
     return (
-      <div className="grid flex-1 place-items-center">
+      <div className="grid h-full place-items-center">
         <Spinner />
       </div>
     );

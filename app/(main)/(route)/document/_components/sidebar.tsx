@@ -12,7 +12,7 @@ const Sidebar = () => {
   const pathname = usePathname(); // Collapse sidebar when Item is clicked
   const isResizingRef = useRef(false);
   const sidebarRef = useRef<ElementRef<"div">>(null);
-  const navbarRef = useRef<ElementRef<"div">>(null);
+  const navbarRef = useRef<ElementRef<"nav">>(null);
   const [isResetting, setResetting] = useState(false);
   const [isCollapsed, setCollapsed] = useState(isMobile);
 
@@ -132,14 +132,14 @@ const Sidebar = () => {
         {/* ------- Handle to resize the sidebar */}
         {/* increased padding for better user experience */}
         <div
-          className="group/handle absolute right-0 top-0 flex h-full w-4  translate-x-1/2 cursor-col-resize justify-center"
+          className="group/handle absolute right-0 top-0 flex h-full w-4 translate-x-1/2 cursor-col-resize justify-center"
           onMouseDown={handleMouseDown}
         >
           {/* ------- Actual handle */}
           <div className="h-full border-l border-primary/[0.1] transition group-hover/handle:border-l-2 group-hover/handle:border-primary/20" />
         </div>
       </div>
-      <div
+      <nav
         ref={navbarRef}
         className={cn(
           "w-[calc(100% - 16rem)] absolute left-64 top-0 z-[999]", //TODO: Check the z-index
@@ -147,15 +147,12 @@ const Sidebar = () => {
           isMobile && "left-0 w-full",
         )}
       >
-        {/* Show sidebar */}
-        <nav className="p-3">
-          {isCollapsed && (
-            <Button variant="ghost" size="icon" onClick={resetWidth}>
-              <HamburgerMenuIcon />
-            </Button>
-          )}
-        </nav>
-      </div>
+        {isCollapsed && (
+          <Button variant="link" size="icon" onClick={resetWidth}>
+            <HamburgerMenuIcon />
+          </Button>
+        )}
+      </nav>
     </>
   );
 };
