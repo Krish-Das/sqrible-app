@@ -2,17 +2,28 @@
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { ChevronLeftIcon, HamburgerMenuIcon } from "@radix-ui/react-icons";
-import { ElementRef, useRef, useState } from "react";
+import { ElementRef, useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "usehooks-ts";
+import { usePathname } from "next/navigation";
 
 const Sidebar = () => {
   const isMobile = useMediaQuery("(max-width: 768px)");
 
+  const pathname = usePathname(); // Collapse sidebar when Item is clicked
   const isResizingRef = useRef(false);
   const sidebarRef = useRef<ElementRef<"aside">>(null);
   const navbarRef = useRef<ElementRef<"div">>(null);
   const [isResetting, setResetting] = useState(false);
   const [isCollapsed, setCollapsed] = useState(isMobile);
+
+  useEffect(() => {
+    if (isMobile) collapseSidebar();
+    else resetWidth();
+  }, [isMobile]);
+
+  useEffect(() => {
+    if (isMobile) collapseSidebar();
+  }, [pathname, isMobile]);
 
   function handleMouseDown(
     event: React.MouseEvent<HTMLDivElement, MouseEvent>,
