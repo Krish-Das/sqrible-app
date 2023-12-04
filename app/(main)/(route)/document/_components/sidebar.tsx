@@ -106,7 +106,7 @@ const Sidebar = () => {
       >
         <aside className="h-full w-full bg-muted/50 p-3">
           {/* Action Items */}
-          <div className="flex w-full cursor-pointer select-none items-center justify-between gap-2 rounded-md p-1 transition hover:bg-primary/5">
+          <div className="flex w-full cursor-pointer select-none items-center justify-between gap-2 rounded-md p-1 transition">
             <UserItem />
 
             {/* Collapse sidebar */}
