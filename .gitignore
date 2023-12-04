@@ -18,6 +18,7 @@
 
 # misc
 *.ignore.*
+.vscode
 .DS_Store
 *.pem
 
