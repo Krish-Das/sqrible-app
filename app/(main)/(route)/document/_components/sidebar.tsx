@@ -11,7 +11,7 @@ const Sidebar = () => {
 
   const pathname = usePathname(); // Collapse sidebar when Item is clicked
   const isResizingRef = useRef(false);
-  const sidebarRef = useRef<ElementRef<"aside">>(null);
+  const sidebarRef = useRef<ElementRef<"div">>(null);
   const navbarRef = useRef<ElementRef<"div">>(null);
   const [isResetting, setResetting] = useState(false);
   const [isCollapsed, setCollapsed] = useState(isMobile);
@@ -95,15 +95,15 @@ const Sidebar = () => {
 
   return (
     <>
-      <div className="relative">
-        <aside
-          className={cn(
-            "h-full w-64 overflow-hidden bg-muted/50",
-            isResetting && "transition-all duration-300 ease-in-out",
-            isMobile && "w-0",
-          )}
-          ref={sidebarRef}
-        >
+      <div
+        className={cn(
+          "relative w-64 overflow-hidden",
+          isResetting && "transition-all duration-300 ease-in-out",
+          isMobile && "w-0",
+        )}
+        ref={sidebarRef}
+      >
+        <aside className="h-full w-full bg-muted/50 p-3">
           {/* Action Items */}
           <div className="flex w-full cursor-pointer select-none items-center justify-between rounded-md p-1 transition hover:bg-primary/5">
             <div className="flex items-center gap-3">
@@ -112,7 +112,9 @@ const Sidebar = () => {
                 AI
               </div>
 
-              <h3 className="text-sm uppercase opacity-70">Action Items</h3>
+              <h3 className="truncate text-sm uppercase opacity-70">
+                Action Items
+              </h3>
             </div>
 
             {/* Collapse sidebar */}

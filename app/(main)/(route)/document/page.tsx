@@ -1,5 +1,5 @@
 const DocumentPage = () => {
-  return <main className="flex-1 p-3">This is a protected page!</main>;
+  return <main className="flex-1 truncate">This is a protected Page</main>;
 };
 
 export default DocumentPage;
