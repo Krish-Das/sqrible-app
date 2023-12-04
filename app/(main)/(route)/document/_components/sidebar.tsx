@@ -1,10 +1,10 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { ChevronLeftIcon, HamburgerMenuIcon } from "@radix-ui/react-icons";
+import { DoubleArrowLeftIcon, HamburgerMenuIcon } from "@radix-ui/react-icons";
+import { usePathname } from "next/navigation";
 import { ElementRef, useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "usehooks-ts";
-import { usePathname } from "next/navigation";
 import UserItem from "./user-item";
 
 const Sidebar = () => {
@@ -106,10 +106,8 @@ const Sidebar = () => {
       >
         <aside className="h-full w-full bg-muted/50 p-3">
           {/* Action Items */}
-          <div className="flex w-full cursor-pointer select-none items-center justify-between rounded-md p-1 transition hover:bg-primary/5">
-            <div className="flex items-center gap-3">
-              <UserItem />
-            </div>
+          <div className="flex w-full cursor-pointer select-none items-center justify-between gap-2 rounded-md p-1 transition hover:bg-primary/5">
+            <UserItem />
 
             {/* Collapse sidebar */}
             <Button
@@ -118,7 +116,7 @@ const Sidebar = () => {
               onClick={collapseSidebar}
               className={cn(null, isMobile && "opacity-100")}
             >
-              <ChevronLeftIcon />
+              <DoubleArrowLeftIcon />
             </Button>
           </div>
         </aside>
@@ -136,7 +134,7 @@ const Sidebar = () => {
       <nav
         ref={navbarRef}
         className={cn(
-          "w-[calc(100% - 16rem)] absolute left-64 top-0 z-[999]", //TODO: Check the z-index
+          "w-[calc(100% - 16rem)] absolute left-64 top-0 z-[9]", //TODO: Check the z-index
           isResetting && "transition-all duration-300 ease-in-out",
           isMobile && "left-0 w-full",
         )}
