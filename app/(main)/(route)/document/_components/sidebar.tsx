@@ -5,6 +5,7 @@ import { ChevronLeftIcon, HamburgerMenuIcon } from "@radix-ui/react-icons";
 import { ElementRef, useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "usehooks-ts";
 import { usePathname } from "next/navigation";
+import UserItem from "./user-item";
 
 const Sidebar = () => {
   const isMobile = useMediaQuery("(max-width: 768px)");
@@ -107,14 +108,7 @@ const Sidebar = () => {
           {/* Action Items */}
           <div className="flex w-full cursor-pointer select-none items-center justify-between rounded-md p-1 transition hover:bg-primary/5">
             <div className="flex items-center gap-3">
-              {/* Avatar */}
-              <div className="grid aspect-square h-7 place-items-center rounded-md bg-secondary text-xs font-bold">
-                AI
-              </div>
-
-              <h3 className="truncate text-sm uppercase opacity-70">
-                Action Items
-              </h3>
+              <UserItem />
             </div>
 
             {/* Collapse sidebar */}

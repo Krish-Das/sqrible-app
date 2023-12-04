@@ -2,7 +2,7 @@ import Hero from "./_components/hero";
 
 const DocumentPage = () => {
   return (
-    <main className="grid flex-1 place-items-center truncate">
+    <main className="flex-1 truncate">
       <Hero />
     </main>
   );
