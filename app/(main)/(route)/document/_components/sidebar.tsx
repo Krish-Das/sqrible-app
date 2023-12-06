@@ -5,10 +5,14 @@ import { DoubleArrowLeftIcon, HamburgerMenuIcon } from "@radix-ui/react-icons";
 import { usePathname } from "next/navigation";
 import { ElementRef, useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "usehooks-ts";
+import { TiDocument } from "react-icons/ti";
 import UserItem from "./user-item";
+import { useQuery } from "convex/react";
+import { api } from "@/convex/_generated/api";
 
 const Sidebar = () => {
   const isMobile = useMediaQuery("(max-width: 768px)");
+  const documents = useQuery(api.documents.get);
 
   const pathname = usePathname(); // Collapse sidebar when Item is clicked
   const isResizingRef = useRef(false);
@@ -118,6 +122,20 @@ const Sidebar = () => {
             >
               <DoubleArrowLeftIcon />
             </Button>
+          </div>
+
+          {/* Documents  */}
+          <div className="flex flex-col gap-1">
+            {documents?.map((doc) => (
+              <Button
+                key={doc._id}
+                variant="ghost"
+                className="justify-start gap-2"
+              >
+                <TiDocument />
+                {doc.title}
+              </Button>
+            ))}
           </div>
         </aside>
 
