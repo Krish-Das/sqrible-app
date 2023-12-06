@@ -3,14 +3,20 @@ import { mutation, query } from "./_generated/server";
 import { Doc, Id } from "./_generated/dataModel";
 
 export const get = query({
-  handler: async (ctx) => {
+  handler: async (ctx, args) => {
     // Getting user Id
     const identity = await ctx.auth.getUserIdentity();
     if (!identity) throw new Error("User not authenticated!");
     const userId = identity.subject;
 
     // Querrying the DB
-    const documents = await ctx.db.query("documents").collect();
+    const documents = await ctx.db
+      .query("documents")
+      .withIndex("by_user_parent", (q) => q.eq("userId", userId))
+      .filter((q) => q.eq(q.field("isArchived"), false))
+      .order("desc")
+      .collect();
+
     return documents;
   },
 });
